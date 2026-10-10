@@ -1,0 +1,86 @@
+[
+  {
+    "id": "csn-385245",
+    "occurred_at": "2026-10-03T12:58:53Z",
+    "latitude": -33.28,
+    "longitude": -72.10,
+    "depth_km": 30.0,
+    "magnitude": {"value": 2.5, "type": "MLv"},
+    "reference": "44 km al O de El Tabo",
+    "source": "Centro Sismológico Nacional, Universidad de Chile",
+    "source_url": "https://sismologia.cl/sismicidad/informes/2026/10/385245.html",
+    "simulated": false
+  },
+  {
+    "id": "demo-arica",
+    "occurred_at": "2026-09-22T12:00:00Z",
+    "latitude": -18.4746,
+    "longitude": -70.29792,
+    "depth_km": 25.0,
+    "magnitude": {"value": 4.0, "type": "ML"},
+    "reference": "Escenario simulado con epicentro en Arica",
+    "source": "Datos sintéticos de prueba; estructura inspirada en el CSN",
+    "source_url": null,
+    "simulated": true
+  },
+  {
+    "id": "demo-coquimbo",
+    "occurred_at": "2026-09-22T12:01:00Z",
+    "latitude": -29.95332,
+    "longitude": -71.33947,
+    "depth_km": 40.0,
+    "magnitude": {"value": 3.5, "type": "ML"},
+    "reference": "Escenario simulado con epicentro en Coquimbo",
+    "source": "Datos sintéticos de prueba; estructura inspirada en el CSN",
+    "source_url": null,
+    "simulated": true
+  },
+  {
+    "id": "demo-valparaiso",
+    "occurred_at": "2026-09-22T12:02:00Z",
+    "latitude": -33.036,
+    "longitude": -71.62963,
+    "depth_km": 35.0,
+    "magnitude": {"value": 4.2, "type": "ML"},
+    "reference": "Escenario simulado con epicentro en Valparaíso",
+    "source": "Datos sintéticos de prueba; estructura inspirada en el CSN",
+    "source_url": null,
+    "simulated": true
+  },
+  {
+    "id": "demo-concepcion",
+    "occurred_at": "2026-09-22T12:03:00Z",
+    "latitude": -36.82699,
+    "longitude": -73.04977,
+    "depth_km": 30.0,
+    "magnitude": {"value": 4.5, "type": "ML"},
+    "reference": "Escenario simulado con epicentro en Concepción",
+    "source": "Datos sintéticos de prueba; estructura inspirada en el CSN",
+    "source_url": null,
+    "simulated": true
+  },
+  {
+    "id": "demo-punta-arenas",
+    "occurred_at": "2026-09-22T12:04:00Z",
+    "latitude": -53.16282,
+    "longitude": -70.90922,
+    "depth_km": 10.0,
+    "magnitude": {"value": 3.0, "type": "ML"},
+    "reference": "Escenario simulado con epicentro en Punta Arenas",
+    "source": "Datos sintéticos de prueba; estructura inspirada en el CSN",
+    "source_url": null,
+    "simulated": true
+  },
+  {
+    "id": "demo-lejano",
+    "occurred_at": "2026-09-22T12:05:00Z",
+    "latitude": -27.1127,
+    "longitude": -109.3497,
+    "depth_km": 15.0,
+    "magnitude": {"value": 3.8, "type": "ML"},
+    "reference": "Escenario simulado próximo a Rapa Nui, lejos de las cinco ciudades",
+    "source": "Datos sintéticos de prueba; estructura inspirada en el CSN",
+    "source_url": null,
+    "simulated": true
+  }
+]

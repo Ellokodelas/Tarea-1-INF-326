@@ -1,0 +1,94 @@
+name: inf326-tarea1
+
+x-app: &app
+  build:
+    context: .
+    target: runtime
+  environment: &environment
+    AMQP_URL: amqp://sismos:sismos_demo@rabbitmq:5672/%2F
+    API_URL: http://api:8000
+
+x-subscriber: &subscriber
+  <<: *app
+  restart: unless-stopped
+  depends_on:
+    topology:
+      condition: service_completed_successfully
+    api:
+      condition: service_healthy
+
+services:
+  rabbitmq:
+    image: rabbitmq:4.2-management
+    hostname: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: sismos
+      RABBITMQ_DEFAULT_PASS: sismos_demo
+    ports:
+      - "127.0.0.1:5672:5672"
+      - "127.0.0.1:15672:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+
+  api:
+    <<: *app
+    ports:
+      - "127.0.0.1:8000:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2)"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+
+  topology:
+    <<: *app
+    command: ["python", "-m", "sismos.broker"]
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+
+  arica:
+    <<: *subscriber
+    command: ["python", "-m", "sismos.subscriber", "--city", "arica"]
+
+  coquimbo:
+    <<: *subscriber
+    command: ["python", "-m", "sismos.subscriber", "--city", "coquimbo"]
+
+  valparaiso:
+    <<: *subscriber
+    command: ["python", "-m", "sismos.subscriber", "--city", "valparaiso"]
+
+  concepcion:
+    <<: *subscriber
+    command: ["python", "-m", "sismos.subscriber", "--city", "concepcion"]
+
+  punta_arenas:
+    <<: *subscriber
+    command: ["python", "-m", "sismos.subscriber", "--city", "punta_arenas"]
+
+  publisher:
+    <<: *app
+    profiles: ["tools"]
+    command: ["python", "-m", "sismos.publisher", "--all"]
+    depends_on:
+      topology:
+        condition: service_completed_successfully
+      api:
+        condition: service_healthy
+
+  tests:
+    build:
+      context: .
+      target: test
+    profiles: ["test"]
+
+volumes:
+  rabbitmq_data:
